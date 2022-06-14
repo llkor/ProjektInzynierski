@@ -11,16 +11,20 @@ import { ChangePassComponent } from './change_pass/change-pass.component';
 import { AuthGuard} from './_services/auth.guards';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CreateSetComponent } from './create-set/create-set.component';
+import { DisplayAllSetsComponent } from './display-all-sets/display-all-sets.component';
+import { FlashcardComponent } from './flashcard/flashcard.component';
 const routes: Routes = [
   {path: 'change_pass', component: ChangePassComponent, canActivate: [AuthGuard]},
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: 'user', component: BoardUserComponent},
-  { path: 'teacher', component: BoardTeacherComponent},
-  { path: 'admin', component: BoardAdminComponent  },
-  { path: 'create-set', component: CreateSetComponent},
+  { path: 'user', component: BoardUserComponent, canActivate: [AuthGuard]},
+  { path: 'teacher', component: BoardTeacherComponent, canActivate: [AuthGuard]},
+  { path: 'admin', component: BoardAdminComponent, canActivate: [AuthGuard]  },
+  { path: 'create-set', component: CreateSetComponent, canActivate: [AuthGuard]},
+  { path: 'all-sets', component: DisplayAllSetsComponent, canActivate: [AuthGuard]},
+  { path: 'set/:id', component: FlashcardComponent, canActivate: [AuthGuard]},
   { path: '404', component: NotFoundComponent  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {path: '**', redirectTo: '/404'}
