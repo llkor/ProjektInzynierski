@@ -8,10 +8,18 @@ const httpOptions = {
 };
 
 @Injectable({
+<<<<<<< HEAD
   providedIn: 'root',
 })
 export class FlashcardsService {
   constructor(private http: HttpClient) {}
+=======
+  providedIn: 'root'
+})
+export class FlashcardsService {
+
+  constructor(private http: HttpClient) { }
+>>>>>>> main
 
   addSet(data: any): Observable<any> {
     return this.http.post(`${baseUrl}/api/add_set`, data, httpOptions);
@@ -19,7 +27,11 @@ export class FlashcardsService {
 
   addSetCSV(data: any): Observable<any> {
     const httpOptionsUpload = {
+<<<<<<< HEAD
       headers: new HttpHeaders({ Accept: 'application/json' }),
+=======
+      headers: new HttpHeaders({ 'Accept': 'application/json' }),
+>>>>>>> main
     };
     return this.http.post(`${baseUrl}/api/csv/upload`, data, httpOptionsUpload);
   }
@@ -37,6 +49,7 @@ export class FlashcardsService {
   }
 
   editFlashcard(requestBody: any, id: number): Observable<any> {
+<<<<<<< HEAD
     return this.http.put(
       `${baseUrl}/api/editFlashcard/${id}`,
       requestBody,
@@ -49,6 +62,9 @@ export class FlashcardsService {
       reportProgress: true,
       responseType: 'json',
     });
+=======
+    return this.http.put(`${baseUrl}/api/editFlashcard/${id}`, requestBody, httpOptions);
+>>>>>>> main
   }
 
   deleteFlashcard(id: number): Observable<any> {
