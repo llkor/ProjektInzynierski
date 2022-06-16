@@ -16,6 +16,7 @@ export class FlashcardComponent implements OnInit, OnDestroy {
     first_side: [''],
     second_side: [''],
   };
+  public selectedFile: File;
   public getSetSubscription;
   public deleteSetSubscription;
   public editFlashcardSubscription;
@@ -72,31 +73,30 @@ export class FlashcardComponent implements OnInit, OnDestroy {
     this.set[index].editMode = true;
   }
 
-  public selectFile(event: any, index: number): void {
+  public setImage(event: any, index: number): void {
     this.set[index].file = event.target.files[0];
     console.log(this.set[index]);
-    if (this.set[index].file) {
-      const reader = new FileReader();
-
-      reader.onload = (e: any) => {
-        console.log(e.target.result);
-        this.set[index].file = e.target.result;
-      };
-
-      reader.readAsDataURL(this.set[index].file);
-    }
   }
 
+  // public sendImage(index, id) {
+  //   const formdata: FormData = new FormData();
+  //   formdata.append('file', this.set[index].file);
+  //   this.flashcardsService.addImage(formdata, id).subscribe(
+  //     (d) => {
+  //       console.log(index, id);
+  //       console.log(d);
+  //     },
+  //     (error) => {
+  //       console.error(error);
+  //     }
+  //   );
+  // }
+
   public confirmEdit(index, id) {
-    console.log(this.set[index].file);
     const requestBody = {
-      //file: JSON.stringify(this.set[index].file),
       first_side: this.set[index].first_side,
       second_side: this.set[index].second_side,
     };
-    //formData.append('first_side', this.set[index].first_side);
-    //formData.append('second_side', this.set[index].second_side);
-    //console.log(formData);
     this.editFlashcardSubscription = this.flashcardsService
       .editFlashcard(requestBody, id)
       .subscribe(
@@ -110,17 +110,12 @@ export class FlashcardComponent implements OnInit, OnDestroy {
         }
       );
 
-    let formData = new FormData();
-    formData.append('file', JSON.stringify(this.set[index].file));
-    // const requestBodyFile = {
-    //   file: this.set[index].file,
-    // };
-    //console.log(requestBodyFile);
-    this.flashcardsService.uploadFile(formData, id).subscribe(
+    const formdata: FormData = new FormData();
+    formdata.append('file', this.set[index].file);
+    this.flashcardsService.addImage(formdata, id).subscribe(
       (d) => {
         console.log(index, id);
         console.log(d);
-        //this.set[index].editMode = false;
       },
       (error) => {
         console.error(error);

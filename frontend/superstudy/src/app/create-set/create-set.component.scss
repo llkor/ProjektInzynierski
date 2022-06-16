@@ -1,19 +1,11 @@
-<<<<<<< HEAD
-.wrapper {
-=======
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@300;400&display=swap');
 .wrapper {
     font-family: 'Poppins', sans-serif;
->>>>>>> main
     width: 100%;
     padding: 30px;
     min-height: 100%;
     margin-bottom: 40px;
-<<<<<<< HEAD
-    background-color: #E8AEB7;
-=======
     // background-color: #E8AEB7;
->>>>>>> main
     position: relative;
 
     .success {
@@ -57,39 +49,25 @@
 
     /* White */
 
-<<<<<<< HEAD
-    background: #FFFFFF;
-    border: 1.5px solid #ADADAD;
-=======
     // background: #FFFFFF;
     // border: 1.5px solid #ADADAD;
->>>>>>> main
     border-radius: 12px;
 }
 
 .inputs {
     display: flex;
-<<<<<<< HEAD
-    justify-content: space-around;
-
-    input {
-=======
     flex-direction: column;
     align-self: flex-start;
     max-width: 450px;
     input {
         font-size: 24px;
         height: 50px;
->>>>>>> main
         margin: 15px;
     }
 
     select {
-<<<<<<< HEAD
-=======
         font-size: 24px;
         height: 50px;
->>>>>>> main
         margin: 15px;
     }
 }

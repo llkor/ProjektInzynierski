@@ -5,15 +5,7 @@
   <div class="create-set-container">
     <h1>Utwórz zestaw</h1>
     <br />
-<<<<<<< HEAD
-    <span>Wybierz plik CSV aby wgrać z niego fiszki</span>
-    <input #inputFile type="file" accept=".csv" (change)="setFile($event)">
-    <button (click)="sendFile()" [disabled]="!selectedFiles">Dodaj plik</button>
-    <button (click)="removeCSV()" [disabled]="!selectedFiles">Usuń plik</button>
-    <br />
-=======
 
->>>>>>> main
     <form ngNativeValidate action="/" method="post" #addSetFrom="ngForm" (ngSubmit)="addSet(addSetFrom.value)">
       <div class="inputs">
         <input class="input-control" placeholder="Wpisz nazwę zestawu" type="text" name="title" class="set-title"
@@ -61,25 +53,8 @@
               </td>
             </div>
             <td>
-<<<<<<< HEAD
-              <input class="flashcards-input" type="file" accept="image/png, image/jpeg" id="newFlashcardImage"
-                [(ngModel)]="newRow.image" name="newFlashcardImage" />
-            </td>
-            <td>
-              <input class="flashcards-input" type="text" id="newFlashcardLeft" [(ngModel)]="newRow.left"
-                name="newFlashcardLeft" />
-            </td>
-            <td>
-              <input class="flashcards-input" type="text" id="newFlashcardRight" [(ngModel)]="newRow.right"
-                name="newFlashcardRight" />
-            </td>
-            <td>
-              <button class="button-add-flashcard" type="button" (click)="addRowToSet()"><i class="fa fa-plus"></i>
-                Dodaj fiszkę</button>
-=======
               <button class="btn btn-primary" type="button" (click)="addRowToSet()"><i
                   class="fa fa-plus"></i></button>
->>>>>>> main
             </td>
           </tr>
           <tr *ngFor="let flashcard of flashcardsSet; let i = index" class="flashcards-row">
@@ -94,21 +69,8 @@
               </td>
             </div>
             <td>
-<<<<<<< HEAD
-              <input [(ngModel)]="flashcard.left" class="flashcards-input" type="text" name="l-{{flashcard.left}}"
-                required />
-            </td>
-            <td>
-              <input [(ngModel)]="flashcard.right" class="flashcards-input" type="text" name="r-{{flashcard.right}}"
-                required />
-            </td>
-            <td>
-              <button class="button-delete" type="button" (click)="deleteFieldValue(i)"><i class="fa fa-times"></i> Usuń
-                fiszkę</button>
-=======
               <button class="btn btn-primary delete-btn" type="button" (click)="deleteFieldValue(i)"><i
                   class="fa fa-times"></i></button>
->>>>>>> main
             </td>
           </tr>
         </tbody>

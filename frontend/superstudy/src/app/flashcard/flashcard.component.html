@@ -74,11 +74,10 @@
           accept="image/png, image/jpeg"
           id="newFlashcardImage"
           [(ngModel)]="flashcard.file"
-          (change)="selectFile($event, i)"
+          (change)="setImage($event, i)"
           name="newFlashcardImage"
         />
       </div>
-
       <div class="first-side">
         <input
           *ngIf="flashcard?.editMode"
