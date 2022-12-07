@@ -12,6 +12,7 @@ import { FlashcardsService } from '../_services/flashcards.service';
 export class TestAbcdComponent implements OnInit, OnDestroy {
   public id;
   public test = [];
+  public switch = false;
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
   constructor(
     private flashcardsService: FlashcardsService,
@@ -61,5 +62,9 @@ export class TestAbcdComponent implements OnInit, OnDestroy {
       return '#3DB86E'; //green
     }
     return '#BDDCFF';
+  }
+
+  changeLanguage(): void {
+    this.switch = !this.switch;
   }
 }

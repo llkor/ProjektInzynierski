@@ -86,4 +86,8 @@ export class StudentsService {
   getStatistics(): Observable<any> {
     return this.http.get(`${baseUrl}/api/get/statistics`, httpOptions);
   }
+
+  getPoints(): Observable<any> {
+    return this.http.get(`${baseUrl}/api/get_points`);
+  }
 }

@@ -112,6 +112,8 @@
             background-color: rgb(174, 210, 252);
             border-radius: 50px;
             height: 100px;
+            padding-left: 15px;
+            padding-right: 15px;
             
 
             input {
@@ -123,6 +125,8 @@
                 font-size: 20px;
                 text-align: center;
                 flex-basis: 33%;
+                word-break: break-all;
+                
             }
 
             .flashcard-image {
@@ -140,6 +144,8 @@
                 font-size: 20px;
                 text-align: center;
                 flex-basis: 33%;
+                word-break: break-all;
+                
             }
 
         }

@@ -100,4 +100,14 @@ export class FlashcardsService {
       httpOptions
     );
   }
+
+  filterSets(filterData: any): Observable<any> {
+    const options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      body: {
+        filter: filterData,
+      },
+    };
+    return this.http.post(`${baseUrl}/api/filter`, options);
+  }
 }

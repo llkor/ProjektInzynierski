@@ -29,12 +29,16 @@
 }
 
 .question {
-  width: 200px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  width: 400px;
+  //white-space: nowrap;
+  //overflow: hidden;
+  //text-overflow: ellipsis;
   display: flex;
   margin-top: 4px;
+  word-break: break-all;
+  height: auto;
+  vertical-align: top;
+
 }
 
 .button:disabled,
@@ -58,4 +62,8 @@ button[disabled] {
   display: flex;
   align-items: center;
   cursor: pointer;
+}
+
+.switch {
+  margin-bottom: 50px;
 }

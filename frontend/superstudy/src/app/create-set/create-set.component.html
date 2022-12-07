@@ -20,6 +20,7 @@
           type="text"
           name="title"
           class="set-title"
+          maxlength="30"
           ngModel
           required
         />
@@ -110,6 +111,7 @@
                 id="newFlashcardLeft"
                 [(ngModel)]="newRow.left"
                 name="newFlashcardLeft"
+                maxlength="40"
               />
             </td>
             <td>
@@ -119,6 +121,7 @@
                 id="newFlashcardRight"
                 [(ngModel)]="newRow.right"
                 name="newFlashcardRight"
+                maxlength="40"
               />
             </td>
           </div>
@@ -143,6 +146,7 @@
                 class="flashcards-input input-control"
                 type="text"
                 name="l-{{ flashcard.left }}"
+                maxlength="40"
                 required
               />
             </td>
@@ -152,6 +156,7 @@
                 class="flashcards-input input-control"
                 type="text"
                 name="r-{{ flashcard.right }}"
+                maxlength="40"
                 required
               />
             </td>
