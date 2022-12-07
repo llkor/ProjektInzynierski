@@ -45,7 +45,7 @@ export class TestWritingComponent implements OnInit, OnDestroy {
   }
 
   public changeColor(index: number): string {
-    if (this.test[index]?.checked) {
+    if (this.test[index]?.checked && this.switch == false) {
       console.log(
         index,
         this.test[index],
@@ -54,6 +54,20 @@ export class TestWritingComponent implements OnInit, OnDestroy {
       );
 
       if (this.test[index].second_side === this.test[index].answer) {
+        return '#3DB86E';
+      }
+      return '#EC1845';
+    }
+
+    else if (this.test[index]?.checked && this.switch == true) {
+      console.log(
+        index,
+        this.test[index],
+        this.test[index].trueFalse,
+        this.test[index].answer
+      );
+
+      if (this.test[index].first_side === this.test[index].answer) {
         return '#3DB86E';
       }
       return '#EC1845';
