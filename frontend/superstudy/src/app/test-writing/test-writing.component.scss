@@ -25,11 +25,13 @@
 }
 
 .answer {
-  margin-left: 50px;
+  margin-left: 100px;
 }
 
 .question {
-  width: 400px;
+  // max-width: 400px;
+  // min-width: 200px;
+  width: 300px;
   //white-space: nowrap;
   //overflow: hidden;
   //text-overflow: ellipsis;
