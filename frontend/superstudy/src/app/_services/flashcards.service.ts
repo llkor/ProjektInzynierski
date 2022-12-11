@@ -101,13 +101,7 @@ export class FlashcardsService {
     );
   }
 
-  filterSets(filterData: any): Observable<any> {
-    const options = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      body: {
-        filter: filterData,
-      },
-    };
-    return this.http.post(`${baseUrl}/api/filter`, options);
+  filterSets(id: number): Observable<any> {
+    return this.http.post(`${baseUrl}/api/filter/${id}`, httpOptions);
   }
 }

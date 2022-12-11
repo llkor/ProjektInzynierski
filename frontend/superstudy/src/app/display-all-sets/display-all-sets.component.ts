@@ -90,15 +90,12 @@ export class DisplayAllSetsComponent implements OnInit, OnDestroy {
     if (option === 'Moje zestawy') {
       this.filterData = 3;
     }
-    const data = {
-      filter: this.filterData,
-    };
-    console.log(data);
     this.filterSetsSubscription = this.flashcardsService
       .filterSets(this.filterData)
       .subscribe((res) => {
         console.log(res);
-        this.allSets = res;
+        this.allSets = res.sets;
+        this.count = res.totalItems;
       });
   }
 
