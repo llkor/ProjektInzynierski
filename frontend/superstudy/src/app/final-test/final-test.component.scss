@@ -2,7 +2,7 @@
   font-size: 35px;
   display: flex;
   width: 100%;
-  align-items: center;
+  //align-items: center;
   justify-content: center;
   margin-bottom: 40px;
 }
@@ -25,14 +25,22 @@
 }
 
 .answer {
-  margin-left: 50px;
+  margin-left: 100px;
+  input {
+    margin-top: 8px;
+  }
 }
 
 .question {
-  width: 200px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  width: 300px;
+  //white-space: nowrap;
+  //overflow: hidden;
+  //text-overflow: ellipsis;
+  display: flex;
+  margin-top: 4px;
+  word-break: break-all;
+  height: auto;
+  vertical-align: top;
 }
 
 .button:disabled,

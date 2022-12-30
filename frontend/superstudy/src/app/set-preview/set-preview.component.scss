@@ -12,7 +12,8 @@
 }
 
 .flashcard-image {
-  max-height: 300px;
+  max-height: 200px;
+  max-width: 200px;
 }
 
 .flashcard {
@@ -53,6 +54,7 @@
 
   .flashcard-text {
     max-width: 50%;
+    word-break: break-all;
   }
 }
 .exit {

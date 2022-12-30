@@ -12,6 +12,7 @@ import { FlashcardsService } from '../_services/flashcards.service';
 export class TestWritingComponent implements OnInit, OnDestroy {
   public id;
   public test = [];
+  public switch = false;
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
   constructor(
     private flashcardsService: FlashcardsService,
@@ -44,7 +45,7 @@ export class TestWritingComponent implements OnInit, OnDestroy {
   }
 
   public changeColor(index: number): string {
-    if (this.test[index]?.checked) {
+    if (this.test[index]?.checked && this.switch == false) {
       console.log(
         index,
         this.test[index],
@@ -57,6 +58,24 @@ export class TestWritingComponent implements OnInit, OnDestroy {
       }
       return '#EC1845';
     }
+
+    else if (this.test[index]?.checked && this.switch == true) {
+      console.log(
+        index,
+        this.test[index],
+        this.test[index].trueFalse,
+        this.test[index].answer
+      );
+
+      if (this.test[index].first_side === this.test[index].answer) {
+        return '#3DB86E';
+      }
+      return '#EC1845';
+    }
     return '#BDDCFF';
+  }
+
+  public changeLanguage(): void {
+    this.switch = !this.switch;
   }
 }
