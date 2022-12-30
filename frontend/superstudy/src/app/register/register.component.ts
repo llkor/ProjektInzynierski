@@ -49,6 +49,7 @@ export class RegisterComponent implements OnInit {
           this.isSuccessful = true;
           this.isSignUpFailed = false;
           this.router.navigate([`login`]);
+          alert("Pomyślnie utworzono konto");
         },
         (err) => {
           this.errorMessage = err.error.message;

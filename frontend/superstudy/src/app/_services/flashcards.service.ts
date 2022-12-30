@@ -118,6 +118,6 @@ export class FlashcardsService {
   }
   
   filterSets(id: number): Observable<any> {
-    return this.http.post(`${baseUrl}/api/filter/${id}`, httpOptions);
+    return this.http.get(`${baseUrl}/api/filter/${id}`, httpOptions);
   }
 }

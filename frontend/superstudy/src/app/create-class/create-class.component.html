@@ -37,9 +37,9 @@
           [(ngModel)]="newRow"
         />
 
-        <div class="add-login" (click)="addStudentToSet()">
+        <button class="add-login" (click)="addStudentToSet()" [disabled]="newRow === ''">
           <i class="fa fa-plus" aria-hidden="true" title="Dodaj login"></i>
-        </div>
+        </button>
       </div>
     </div>
 
