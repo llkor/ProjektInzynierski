@@ -1,7 +1,7 @@
 <div class="wrapper">
-  <div class="success" *ngIf="success">
+  <!-- <div class="success" *ngIf="success">
     <div class="success-text">Pomyślnie utworzono zestaw</div>
-  </div>
+  </div> -->
   <div class="create-set-container">
     <h1>Utwórz zestaw</h1>
     <br />
@@ -37,6 +37,8 @@
           <option>Język niemiecki</option>
           <option>Język francuski</option>
           <option>Język hiszpański</option>
+          <option>Geografia</option>
+          <option>Historia</option>
         </select>
         <select
           *ngIf="user.includes('ROLE_TEACHER')"
