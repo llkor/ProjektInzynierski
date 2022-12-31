@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { StatisticsComponent } from './statistics.component';
 
@@ -8,7 +11,12 @@ describe('StatisticsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StatisticsComponent ]
+      declarations: [ StatisticsComponent ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        MatIconModule
+      ],
     })
     .compileComponents();
   });
