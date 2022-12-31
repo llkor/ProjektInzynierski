@@ -116,4 +116,8 @@ export class FlashcardsService {
   getMixTest(id: number): Observable<any> {
     return this.http.get(`${baseUrl}/api/mixStudy/${id}`, httpOptions);
   }
+  
+  filterSets(id: number): Observable<any> {
+    return this.http.get(`${baseUrl}/api/filter/${id}`, httpOptions);
+  }
 }

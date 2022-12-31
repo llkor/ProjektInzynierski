@@ -17,6 +17,7 @@ export class StatisticsComponent implements OnInit {
 
   public countSetSubscription: Subscription;
   public getCorrectSubscription: Subscription;
+  public getPointsSubscription: Subscription;
 
   constructor(
     private flashcardsService: FlashcardsService,
@@ -27,8 +28,9 @@ export class StatisticsComponent implements OnInit {
   ngOnInit(): void {
     this.countSets();
     this.getCorrectAnswers();
-    this.user = this.token.getUser();
-    this.userPoints = this.user.points;
+    // this.user = this.token.getUser();
+    // this.userPoints = this.user.points;
+    this.getPoints();
   }
 
   countSets() {
@@ -46,6 +48,15 @@ export class StatisticsComponent implements OnInit {
         this.correctAnswers = res.percent;
         this.correctAnswers = Math.ceil(this.correctAnswers);
         console.log(this.correctAnswers);
+      });
+  }
+
+  getPoints() {
+    this.getPointsSubscription = this.studentsService
+      .getPoints()
+      .subscribe((res) => {
+        this.userPoints = res.points;
+        console.log(this.userPoints);
       });
   }
 }

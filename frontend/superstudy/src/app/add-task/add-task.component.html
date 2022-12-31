@@ -33,7 +33,7 @@
       name="task"
     ></textarea>
     <div class="button-wrapper">
-      <button class="btn btn-primary" type="submit" (click)="createTask()">
+      <button class="btn btn-primary" type="submit" (click)="createTask()" [disabled]="this.task === ''">
         Dodaj zadanie
       </button>
     </div>

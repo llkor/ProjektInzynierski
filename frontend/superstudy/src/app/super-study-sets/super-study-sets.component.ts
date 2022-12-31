@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SuperStudySetsService } from '../_services/super-study-sets.service';
 import { TokenStorageService } from '../_services/token-storage.service';
+import { StudentsService } from '../_services/students.service';
 
 const MOCK_SETS: any[] = [
   {
@@ -52,13 +53,17 @@ export class SuperStudySetsComponent implements OnInit {
   public allSets = [];
   public user;
   public isTeacher = false;
+  public userPoints;
+  public errorMessage = '';
 
   private getSetsSubscription: Subscription;
   private buySetSubscription: Subscription;
+  private getPointsSubscription: Subscription;
 
   constructor(
     private superStudyService: SuperStudySetsService,
-    private token: TokenStorageService
+    private token: TokenStorageService,
+    private studentsService: StudentsService
   ) {}
 
   ngOnInit(): void {
@@ -68,6 +73,7 @@ export class SuperStudySetsComponent implements OnInit {
     if (this.user.roles.includes('ROLE_TEACHER')) {
       this.isTeacher = true;
     }
+    this.getPoints();
   }
 
   getSets(): void {
@@ -80,12 +86,28 @@ export class SuperStudySetsComponent implements OnInit {
   }
 
   buySet(id: number): void {
-    this.buySetSubscription = this.superStudyService
-      .buySet(id)
-      .subscribe((res) => {
+    this.buySetSubscription = this.superStudyService.buySet(id).subscribe(
+      (res) => {
         console.log(res);
         alert('Kupiono zestaw! Aby go obejrzeć przejdź do "Wszystkie zestawy"');
         this.getSets();
+      },
+      (error: HttpErrorResponse) => {
+        this.errorMessage = error.error;
+        alert(this.errorMessage);
+        setTimeout(() => {
+          this.errorMessage = '';
+        }, 3000);
+      }
+    );
+  }
+
+  getPoints(): void {
+    this.getPointsSubscription = this.studentsService
+      .getPoints()
+      .subscribe((res) => {
+        this.userPoints = res.points;
+        console.log(this.userPoints);
       });
   }
 }

@@ -12,6 +12,7 @@ import { FlashcardsService } from '../_services/flashcards.service';
 export class TestAbcdComponent implements OnInit, OnDestroy {
   public id;
   public test = [];
+  public switch = false;
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
   constructor(
     private flashcardsService: FlashcardsService,
@@ -44,7 +45,7 @@ export class TestAbcdComponent implements OnInit, OnDestroy {
   }
 
   public changeColor(id: number, answer: string): string {
-    if (this.test[id]?.checked && this.test[id].answer === answer) {
+    if (this.test[id]?.checked && this.test[id].answer === answer && this.switch == false) {
       console.log(
         id,
         this.test[id],
@@ -57,9 +58,32 @@ export class TestAbcdComponent implements OnInit, OnDestroy {
       }
       return '#EC1845'; //red
     }
-    if (this.test[id]?.checked && this.test[id].second_side === answer) {
+
+    else if (this.test[id]?.checked && this.test[id].answer2 === answer && this.switch == true) {
+      console.log(
+        id,
+        this.test[id],
+        this.test[id].trueFalse,
+        this.test[id].answer2
+      );
+
+      if (this.test[id].first_side === this.test[id].answer2) {
+        return '#3DB86E'; //green
+      }
+      return '#EC1845'; //red
+    }
+
+    if (this.test[id]?.checked && this.test[id].second_side === answer && this.switch == false) {
+      return '#3DB86E'; //green
+    }
+
+    else if (this.test[id]?.checked && this.test[id].first_side === answer && this.switch == true) {
       return '#3DB86E'; //green
     }
     return '#BDDCFF';
+  }
+
+  changeLanguage(): void {
+    this.switch = !this.switch;
   }
 }

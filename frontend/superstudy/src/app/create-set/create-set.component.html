@@ -1,7 +1,7 @@
 <div class="wrapper">
-  <div class="success" *ngIf="success">
+  <!-- <div class="success" *ngIf="success">
     <div class="success-text">Pomyślnie utworzono zestaw</div>
-  </div>
+  </div> -->
   <div class="create-set-container">
     <h1>Utwórz zestaw</h1>
     <br />
@@ -20,6 +20,7 @@
           type="text"
           name="title"
           class="set-title"
+          maxlength="30"
           ngModel
           required
         />
@@ -36,6 +37,8 @@
           <option>Język niemiecki</option>
           <option>Język francuski</option>
           <option>Język hiszpański</option>
+          <option>Geografia</option>
+          <option>Historia</option>
         </select>
         <select
           *ngIf="user.includes('ROLE_TEACHER')"
@@ -112,6 +115,7 @@
                 id="newFlashcardLeft"
                 [(ngModel)]="newRow.left"
                 name="newFlashcardLeft"
+                maxlength="40"
               />
             </td>
             <td>
@@ -121,6 +125,7 @@
                 id="newFlashcardRight"
                 [(ngModel)]="newRow.right"
                 name="newFlashcardRight"
+                maxlength="40"
               />
             </td>
           </div>
@@ -145,6 +150,7 @@
                 class="flashcards-input input-control"
                 type="text"
                 name="l-{{ flashcard.left }}"
+                maxlength="40"
                 required
               />
             </td>
@@ -154,6 +160,7 @@
                 class="flashcards-input input-control"
                 type="text"
                 name="r-{{ flashcard.right }}"
+                maxlength="40"
                 required
               />
             </td>

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FlashcardsService } from '../_services/flashcards.service';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-display-all-sets',
@@ -12,6 +13,9 @@ export class DisplayAllSetsComponent implements OnInit, OnDestroy {
   public filteredSets = [];
   public filterOption = '';
   public isFiltered = false;
+  public filterData = 0;
+  public user;
+  public isTeacher = false;
   currentIndex = -1;
   title = '';
 
@@ -21,14 +25,20 @@ export class DisplayAllSetsComponent implements OnInit, OnDestroy {
   pageSizes = [3, 6, 9];
 
   public getAllSetsSubscription;
+  public filterSetsSubscription;
 
   constructor(
     private flashcardsService: FlashcardsService,
-    private router: Router
+    private router: Router,
+    private token: TokenStorageService
   ) {}
 
   ngOnInit(): void {
     this.retrieveSets();
+    this.user = this.token.getUser();
+    if (this.user.roles.includes('ROLE_TEACHER')) {
+      this.isTeacher = true;
+    }
   }
 
   ngOnDestroy(): void {
@@ -61,41 +71,32 @@ export class DisplayAllSetsComponent implements OnInit, OnDestroy {
     }
   }
 
-  displaySuperStudy() {
-    const result = this.allSets.filter((obj) => {
-      return obj.points !== 0;
-    });
-    console.log(result);
-    this.allSets = result;
-  }
-
-  displayClassSets() {
-    const result = this.allSets.filter((obj) => {
-      return obj.classId !== null;
-    });
-    console.log(result);
-    this.allSets = result;
-  }
-
-  displayMySets() {
-    const result = this.allSets.filter((obj) => {
-      return obj.points === 0;
-    });
-    console.log(result);
-    this.allSets = result;
+  isClassSet(id: number) {
+    if (id != this.user.id) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   filterSets(option: String) {
     this.isFiltered = true;
     if (option === 'SuperStudy') {
-      this.displaySuperStudy();
+      this.filterData = 1;
     }
     if (option === 'Zestawy klasy') {
-      this.displayClassSets();
+      this.filterData = 2;
     }
     if (option === 'Moje zestawy') {
-      this.displayMySets();
+      this.filterData = 3;
     }
+    this.filterSetsSubscription = this.flashcardsService
+      .filterSets(this.filterData)
+      .subscribe((res) => {
+        console.log(res);
+        this.allSets = res.sets;
+        this.count = res.totalItems;
+      });
   }
 
   getRequestParams(searchTitle: string, page: number, pageSize: number): any {

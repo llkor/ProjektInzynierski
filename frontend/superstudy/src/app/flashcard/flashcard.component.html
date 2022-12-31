@@ -9,9 +9,9 @@
 </div>
 <div *ngIf="displayRemoveModal" class="warning-modal-overlay"></div>
 <div class="flashcards-container">
-    <div class="success" *ngIf="success">
+    <!-- <div class="success" *ngIf="success">
         <div class="success-text">Pomyślnie usunięto zestaw</div>
-    </div>
+    </div> -->
     <div class="name">
         {{setDetails.name}}
 
@@ -50,7 +50,7 @@
         class="flashcard-row">
         <div class="flashcard-wrapper">
             <div class="first-side">
-                <input placeholder="Lewa strona" type="text" name="first_side" class="set-title"
+                <input placeholder="Lewa strona" type="text" name="first_side" class="set-title" maxlength="40"
                     [(ngModel)]="newFlashcard.first_side[0]" required />
             </div>
             <div class="select-file">
@@ -69,7 +69,7 @@
             </div>
             
             <div class="second-side">
-                <input placeholder="Prawa strona" type="text" name="second_side" class="set-title"
+                <input placeholder="Prawa strona" type="text" name="second_side" class="set-title" maxlength="40"
                     [(ngModel)]="newFlashcard.second_side[0]" required />
                     
             </div>

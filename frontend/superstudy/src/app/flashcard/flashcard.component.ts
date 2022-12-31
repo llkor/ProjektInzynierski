@@ -96,6 +96,7 @@ export class FlashcardComponent implements OnInit, OnDestroy {
         console.log(d);
         this.displayRemoveModal = false;
         this.success = true;
+        alert("Pomyślnie usunięto zestaw");
         setTimeout(() => {
           this.router.navigate([`all-sets`]);
         }, 2000);

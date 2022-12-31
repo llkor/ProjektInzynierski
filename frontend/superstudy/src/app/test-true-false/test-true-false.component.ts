@@ -59,4 +59,6 @@ export class TestTrueFalseComponent implements OnInit, OnDestroy {
     }
     return '#BDDCFF';
   }
+
+  
 }

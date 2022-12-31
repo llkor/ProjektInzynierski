@@ -209,11 +209,13 @@ form {
         width: 250px;
     }
 }
-.delete-btn:hover {
-    background-color: #FFD7E7;
-    color: red;
+.delete-btn {
+    background-color: #EC1845;
+    border-color: #EC1845;
+    color: white;
 }
 
+
 .button-create {
-    margin-top: 40px;
+    margin-top: 80px;
 }
