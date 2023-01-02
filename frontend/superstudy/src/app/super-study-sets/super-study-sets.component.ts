@@ -95,6 +95,8 @@ export class SuperStudySetsComponent implements OnInit {
       (error: HttpErrorResponse) => {
         this.errorMessage = error.error;
         alert(this.errorMessage);
+        this.getSets();
+        this.getPoints();
         setTimeout(() => {
           this.errorMessage = '';
         }, 3000);
