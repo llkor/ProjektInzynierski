@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Change_pass } from '../models/change_passs.model';
-const baseUrl = 'http://superstudy.projektstudencki.pl:8080/api';
+const baseUrl = 'https://superstudybackend.glitch.me/api';
 @Injectable({
     providedIn: 'root'
   })
