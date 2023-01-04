@@ -229,16 +229,21 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public readNotification(notification: any): void {
-    if (notification.if_read !== "no") {
-      return;
+    if (notification.if_read === "no") {
+      this.flashcardsService.readNotification(notification.id).pipe(takeUntil(this.destroyed$)).subscribe(() => {
+        this.notificationsTimerSub?.unsubscribe?.();
+        this.getNotifications();
+      }, (e) => {
+        this.notificationsTimerSub?.unsubscribe?.();
+        this.getNotifications();
+      });
     }
-    this.flashcardsService.readNotification(notification.id).pipe(takeUntil(this.destroyed$)).subscribe(() => {
-      this.notificationsTimerSub?.unsubscribe?.();
-      this.getNotifications();
-    }, (e)=>{
-      this.notificationsTimerSub?.unsubscribe?.();
-      this.getNotifications();
-    });
+
+    if (notification.setId !== null && typeof notification.setId !== 'undefined') {
+      this.router.navigate([`set-menu/${notification.setId}`]);
+    } else if (typeof notification.classId !== 'undefined') {
+      this.router.navigate([`class-room/${notification.classId}`]);
+    }
   }
 
   public deleteNotification(id: number, event: MouseEvent): void {

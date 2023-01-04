@@ -58,6 +58,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserRole(): string {
+    console.log(this.currentUser.roles);
     if (this.currentUser.roles.includes('ROLE_USER')) {
       return "Student"
     }
