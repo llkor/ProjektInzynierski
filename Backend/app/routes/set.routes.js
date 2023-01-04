@@ -40,6 +40,6 @@ module.exports = function(app) {
       [authJwt.verifyToken, verifySet.check_access], set_controller.downloadCsv);
       app.get("/api/get_points",
         [authJwt.verifyToken], set_controller.getPoints)
-        app.get("/api/filter",
+        app.post("/api/filter/:filter",
       [authJwt.verifyToken], set_controller.filter)
 }
