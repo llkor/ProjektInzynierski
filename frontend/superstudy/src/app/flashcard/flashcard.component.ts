@@ -113,19 +113,30 @@ export class FlashcardComponent implements OnInit, OnDestroy {
       this.addImageSubscription = this.flashcardsService
         .addImage(this.set[index].file, id)
         .subscribe(
-          (d) => {
-            console.log(d);
-            this.addImageSubscription?.unsubscribe();
+          async (d) => {
+            this.set = await this.flashcardsService.getSet(this.id).toPromise();
+            setTimeout(() => this.saveFlashcard(index, id), 200);
           },
-          (error) => {
-            // console.error(error);
+          async (error) => {
+            this.set = await this.flashcardsService.getSet(this.id).toPromise();
+            setTimeout(() => this.saveFlashcard(index, id), 200);
+          },
+          () => {
           }
         );
+    } else {
+      this.saveFlashcard(index, id);
     }
-    const requestBody = {
+  }
+
+  public saveFlashcard(index, id) {
+    const requestBody: any = {
       first_side: this.set[index].first_side,
       second_side: this.set[index].second_side,
     };
+    if(this.set[index]?.link){
+      requestBody.link = this.set[index].link;
+    }
     this.editFlashcardSubscription = this.flashcardsService
       .editFlashcard(requestBody, id)
       .subscribe(
@@ -137,7 +148,7 @@ export class FlashcardComponent implements OnInit, OnDestroy {
         },
         (error) => {
           console.error(error);
-          this.set[index].error_mess = error.error;
+          this.set[index].error_mess = typeof error.error === 'string' ? error.error : '';
         },
         () => {
           this.getSet();

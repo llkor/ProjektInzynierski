@@ -29,6 +29,7 @@
       >
         Prześlij
       </button>
+      <span class="correct-answer" *ngIf="item.checked && item.answer !== item.second_side">Odp: {{item.second_side}}</span>
     </div>
     <div class="answer" [style.pointer-events]="item?.checked ? 'none' : ''" *ngIf="this.switch">
       <input
