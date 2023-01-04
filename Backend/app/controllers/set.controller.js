@@ -390,21 +390,21 @@ exports.filter = (req, res) => {
             console.log(ourSets)
             for (let m = 0; m < ourSets.length; m++) {
 
-                if (req.body.filter == 1) { //SuperStudy sets
+                if (req.params.filter == 1) { //SuperStudy sets
                     if (ourSets[m].points != 0) {
                         console.log("------------")
                         sets.push(ourSets[m])
 
                     }
                 }
-                if (req.body.filter == 2) {
+                if (req.params.filter == 2) {
                     if (ourSets[m].classId != null) { //Class sets
                         console.log("------------")
                         sets.push(ourSets[m])
 
                     }
                 }
-                if (req.body.filter == 3) {
+                if (req.params.filter == 3) {
                     if (ourSets[m].points == 0 && ourSets[m].classId == null) { //Own user sets
                         console.log("------------")
                         sets.push(ourSets[m])
