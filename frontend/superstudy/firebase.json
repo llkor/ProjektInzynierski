@@ -1,5 +1,9 @@
 {
   "hosting": {
+    "rewrites": [ {
+      "source": "**",
+      "destination": "/index.html"
+    } ],
     "public": "dist/superstudy",
     "ignore": [
       "firebase.json",
