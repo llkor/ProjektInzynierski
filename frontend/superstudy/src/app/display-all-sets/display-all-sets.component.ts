@@ -100,27 +100,21 @@ export class DisplayAllSetsComponent implements OnInit, OnDestroy {
   }
 
   getRequestParams(searchTitle: string, page: number, pageSize: number): any {
-    // tslint:disable-next-line:prefer-const
     let params: any = {};
-
     if (searchTitle) {
       params[`title`] = searchTitle;
     }
-
     if (page) {
       params[`page`] = page - 1;
     }
-
     if (pageSize) {
       params[`size`] = pageSize;
     }
-
     return params;
   }
 
   retrieveSets(): void {
     const params = this.getRequestParams(this.title, this.page, this.pageSize);
-
     this.flashcardsService.getAllSets(params).subscribe(
       (response) => {
         const { sets, totalItems } = response;
@@ -144,4 +138,5 @@ export class DisplayAllSetsComponent implements OnInit, OnDestroy {
     this.page = 1;
     this.retrieveSets();
   }
+
 }

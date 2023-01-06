@@ -42,6 +42,7 @@ export class TestAbcdComponent implements OnInit, OnDestroy {
   public isCorrect(id: number, answer: string): void {
     this.test[id].checked = true;
     this.test[id].answer = answer;
+    this.test[id].answer2 = answer;
   }
 
   public changeColor(id: number, answer: string): string {

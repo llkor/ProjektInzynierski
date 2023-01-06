@@ -91,6 +91,7 @@ export class SuperStudySetsComponent implements OnInit {
         console.log(res);
         alert('Kupiono zestaw! Aby go obejrzeć przejdź do "Wszystkie zestawy"');
         this.getSets();
+        this.getPoints();
       },
       (error: HttpErrorResponse) => {
         this.errorMessage = error.error;

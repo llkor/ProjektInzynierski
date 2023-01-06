@@ -63,7 +63,6 @@ export class ClassEditComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.allSets = MOCK_SETS;
 
     const classId = Number(this.route.snapshot.paramMap.get('id'));
     this.classId = classId;
@@ -150,7 +149,8 @@ export class ClassEditComponent implements OnInit, OnDestroy {
       .subscribe(
         (res) => {
           console.log(res);
-          alert('Pomyślnie usunięto ucznia');
+          alert('Pomyślnie usunięto ucznia!');
+          this.getStudentsList();
         },
         (error: HttpErrorResponse) => {
           this.errorMessage = error.error.message;
@@ -173,12 +173,22 @@ export class ClassEditComponent implements OnInit, OnDestroy {
       .subscribe(
         (res) => {
           console.log(res);
-          this.studentToAdd = '';
-          alert('Pomyślnie dodano nowego ucznia');
-          this.getStudentsList();
+          if (res.notFound.length != 0) {
+            alert("Podany login nie istnieje");
+          }
+          else {
+            this.studentToAdd = '';
+            setTimeout(() => {
+              alert('Pomyślnie dodano nowego ucznia!');
+              this.getStudentsList();
+            }, 3000);
+          }
+          
+          
         },
         (error: HttpErrorResponse) => {
           this.errorMessage = error.error.message;
+          this.getStudentsList();
           setTimeout(() => {
             this.errorMessage = '';
           }, 3000);
