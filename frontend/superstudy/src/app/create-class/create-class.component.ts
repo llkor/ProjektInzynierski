@@ -105,11 +105,24 @@ export class CreateClassComponent implements OnInit, OnDestroy {
                 students: this.studentsSet,
                 classId: res.classId,
               })
-              .subscribe();
-            alert('Pomyślnie utworzono klasę');
-            setTimeout(() => {
-              this.router.navigate([`all-classes`]);
-            }, 2000);
+              .subscribe(
+                (response) => {
+                  console.log(response);
+                  if (response.notFound.length != 0) {
+                    alert("Przynajmniej jeden z podanych loginów nie istnieje. Edytuj listę uczniów na stronie edycji klasy");
+                    setTimeout(() => {
+                      this.router.navigate([`edit-class/${res.classId}`]);
+                      }, 2000);
+                  }
+                  else {
+                    alert('Pomyślnie utworzono klasę');
+                    setTimeout(() => {
+                      this.router.navigate([`all-classes`]);
+                      }, 2000);
+                  }
+                }
+              );
+            
           },
           (error: HttpErrorResponse) => {
             alert('Błąd');
