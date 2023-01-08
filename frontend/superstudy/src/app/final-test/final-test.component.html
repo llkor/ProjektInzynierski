@@ -4,8 +4,12 @@
 </div>
 <div class="wrapper">
   <div class="title">Test końcowy</div>
+  <div class="math-container"><button class="btn btn-primary" (click)="enableMathMode()">Włącz/Wyłacz Formuły matymatyczne</button></div>
   <div *ngFor="let item of test; let i = index" class="example">
-    <div class="question" [title]="item.first_side">{{ item.first_side }}</div>
+    <div class="question" [title]="item.first_side" *ngIf="!mathMode">{{ item.first_side }}</div>
+    <div class="question" *ngIf="mathMode">
+      <math-field [innerHTML]="item.first_side"></math-field>
+    </div>
     <div class="answer" [style.pointer-events]="item?.checked ? 'none' : ''">
       <input
         class="text-input"
