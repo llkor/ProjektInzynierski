@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router, Data } from '@angular/router';
 import { FlashcardsService } from '../_services/flashcards.service';
+// @ts-ignore
+import 'mathlive';
 
 @Component({
   selector: 'app-flashcard',
@@ -38,6 +40,7 @@ export class FlashcardComponent implements OnInit, OnDestroy {
   public addNewFlashcardSubscription;
   public getSetnameSubscription;
   public addImageSubscription;
+  public mathMode = (localStorage?.getItem('math-mode-super-study') === 'true');
   @ViewChild('inputFile') myInputVariable: ElementRef;
   @ViewChild('fileInput') myInputVariable2: ElementRef;
 
@@ -286,5 +289,14 @@ export class FlashcardComponent implements OnInit, OnDestroy {
       this.set[index].file = formdata;
       console.log(this.set[index].file);
     }
+  }
+
+  public enableMathMode(){
+    this.mathMode = !this.mathMode;
+    localStorage?.setItem('math-mode-super-study', `${this.mathMode}`);
+  }
+
+  public changeNewMathInputValue(e: any, i: number) {
+    this.set[i].first_side = e.target.value;
   }
 }

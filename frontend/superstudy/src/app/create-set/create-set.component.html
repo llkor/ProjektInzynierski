@@ -4,6 +4,7 @@
   </div> -->
   <div class="create-set-container">
     <h1>Utwórz zestaw</h1>
+    <div class="math-container"><button class="btn btn-primary" (click)="enableMathMode()">Włącz/Wyłacz Formuły matymatyczne</button></div>
     <br />
 
     <form
@@ -110,6 +111,7 @@
           <div class="input-flashcards">
             <td>
               <input
+              *ngIf="!mathMode"
                 class="flashcards-input input-control"
                 type="text"
                 id="newFlashcardLeft"
@@ -117,6 +119,9 @@
                 name="newFlashcardLeft"
                 maxlength="40"
               />
+              <math-field *ngIf="mathMode" (change)="changeNewMathInputValue($event,newRow.left)" #newMathInput>
+                {{newRow.left}}
+              </math-field>
             </td>
             <td>
               <input
@@ -145,7 +150,11 @@
         >
           <div class="input-flashcards">
             <td>
+              <math-field *ngIf="mathMode" (change)="changeNewMathInputValue($event,i)">
+                {{flashcard.left}}
+              </math-field>
               <input
+                *ngIf="!mathMode"
                 [(ngModel)]="flashcard.left"
                 class="flashcards-input input-control"
                 type="text"

@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { FlashcardsService } from '../_services/flashcards.service';
 import { takeUntil } from 'rxjs/operators';
 import { ReplaySubject } from 'rxjs';
+// @ts-ignore
+import 'mathlive';
 
 @Component({
   selector: 'app-test-true-false',
@@ -12,6 +14,7 @@ import { ReplaySubject } from 'rxjs';
 export class TestTrueFalseComponent implements OnInit, OnDestroy {
   public id;
   public test = [];
+  public mathMode = (localStorage?.getItem('math-mode-super-study') === 'true');
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
   constructor(
     private flashcardsService: FlashcardsService,
@@ -60,5 +63,8 @@ export class TestTrueFalseComponent implements OnInit, OnDestroy {
     return '#BDDCFF';
   }
 
-  
+  public enableMathMode(){
+    this.mathMode = !this.mathMode;
+    localStorage?.setItem('math-mode-super-study', `${this.mathMode}`);
+  }
 }

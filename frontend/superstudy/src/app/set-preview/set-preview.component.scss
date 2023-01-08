@@ -1,3 +1,19 @@
+@import 'mathlive/dist/mathlive-static.css';
+
+math-field{
+    font-size: 30px;
+    background-color: #BDDCFF;
+    min-height: 100px;
+    min-width: 100px;
+    padding: 5px;
+    pointer-events: none;
+}
+.math-container{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
 .flashcard-container {
   display: flex;
   align-items: center;

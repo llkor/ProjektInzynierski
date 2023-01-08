@@ -4,10 +4,14 @@
   </div>
   <div class="container-fluid">
     <div class="title">Test mieszany</div>
+    <div class="math-container"><button class="btn btn-primary" (click)="enableMathMode()">Włącz/Wyłacz Formuły matymatyczne</button></div>
     <div *ngFor="let item of test; let i = index" class="single-question" [ngClass]="item.method">
       <ng-container [ngSwitch]="item.method">
         <ng-container *ngSwitchCase="'abcd'">
-            <div class="text">{{ item.first_side }}</div>
+            <div class="text" *ngIf="!mathMode">{{ item.first_side }}</div>
+            <div class="text" *ngIf="mathMode">
+              <math-field [innerHTML]="item.first_side"></math-field>
+            </div>
             <hr class="line" />
             <div class="buttons">
                 <button *ngFor="let answer of item.answers; let ianswer = index" class="abcd-button" (click)="isCorrectABCD(i, answer)"
@@ -18,7 +22,10 @@
         </ng-container>
         <ng-container *ngSwitchCase="'trueFalse'">
             <div class="true-false-text">
-                <div class="first-side">{{ item.first_side }}</div>
+                <div class="first-side" *ngIf="!mathMode">{{ item.first_side }}</div>
+                <div class="first-side" *ngIf="mathMode">
+                  <math-field [innerHTML]="item.first_side"></math-field>
+                </div>
                 <div class="arrow">
                   <img
                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAgCAYAAACinX6EAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAD8SURBVHgB5Zk7DoJAFEUf6lY0JOxELajYjsN2qCiMtS7CxMTF6FzDGIN8ZoZq7jsVlOfkBeYjkjj7sjrJAtaSOLu8uG7zQp6P+00iWAkBmYiJnQSKACA2Ak0AEBOBKgAIjUAXAIREoAwAfCPQBgA+EagDgLkI9AHAVAQVAcBYhOxQVi9RhJU1l7ap3buaCXD0J0FdAPAbYSNK6SLonACHlc/UBrATUJ/bxmj9Bnzk8azxL/CV797TJmQd05cHmlaCf/JAy15gUB5o2A2OygP284BJecB8IjQrD1jPBL3kAeOpsLc8YLsXCJIHTDdDwfKA5W4wSp6CY1kZWcAbuoBTnXw1HW8AAAAASUVORK5CYII="
@@ -47,7 +54,10 @@
               </div>
         </ng-container>
         <ng-container *ngSwitchCase="'write'">
-            <div class="question" [title]="item.first_side">{{ item.first_side }}</div>
+            <div class="question" *ngIf="!mathMode" [title]="item.first_side">{{ item.first_side }}</div>
+            <div class="question" *ngIf="mathMode">
+              <math-field [innerHTML]="item.first_side"></math-field>
+            </div>
             <div class="answer" [style.pointer-events]="item?.checked ? 'none' : ''">
               <input
                 class="text-input"
