@@ -2,7 +2,7 @@
   <h1 class="title">Wszystkie zestawy</h1>
   <div class="form-wrapper">
     <select name="level" class="form-control" [(ngModel)]="this.filterOption">
-      <option value="" disabled selected>Filtruj zestawy</option>
+      <option value="" disabled selected hidden>Filtruj zestawy</option>
       <option>SuperStudy</option>
       <option>Moje zestawy</option>
       <option>Zestawy klasy</option>
@@ -13,6 +13,7 @@
         type="submit"
         (click)="filterSets(this.filterOption)"
         *ngIf="!isFiltered"
+        [disabled]="this.filterOption == ''"
       >
         Filtruj
       </button>
