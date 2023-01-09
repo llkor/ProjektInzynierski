@@ -139,4 +139,10 @@ export class DisplayAllSetsComponent implements OnInit, OnDestroy {
     this.retrieveSets();
   }
 
+  clearFilter(): void {
+    this.isFiltered = false;
+    this.filterOption = '';
+    this.retrieveSets();
+  }
+
 }

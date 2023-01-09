@@ -54,7 +54,7 @@ export class ClassInfoComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.allSets = MOCK_SETS;
+    //this.allSets = MOCK_SETS;
 
     const classId = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -71,7 +71,10 @@ export class ClassInfoComponent implements OnInit, OnDestroy {
         (res) => {
           this.ranking = res;
           console.log(this.ranking);
-          this.getFinalRanking(this.ranking);
+          setTimeout(() => {
+            this.getFinalRanking(this.ranking);
+          }, 1500);
+          
         },
         (error: HttpErrorResponse) => {}
       );
