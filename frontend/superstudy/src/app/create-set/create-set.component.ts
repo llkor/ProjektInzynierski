@@ -11,7 +11,8 @@ import { FlashcardsService } from '../_services/flashcards.service';
 import { StudentsService } from '../_services/students.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { ActivatedRoute } from '@angular/router';
-
+// @ts-ignore
+import 'mathlive';
 @Component({
   selector: 'app-create-set',
   templateUrl: './create-set.component.html',
@@ -33,7 +34,9 @@ export class CreateSetComponent implements OnInit, OnDestroy {
   private classId;
   private allClasses;
   public csvname = 'Wybierz plik csv';
+  public mathMode = (localStorage?.getItem('math-mode-super-study') === 'true');
   @ViewChild('inputFile') myInputVariable: ElementRef;
+  @ViewChild('newMathInput') newMathInput: ElementRef;
 
   constructor(
     private flashcardsService: FlashcardsService,
@@ -75,10 +78,16 @@ export class CreateSetComponent implements OnInit, OnDestroy {
         this.errorMessage = '';
       }, 3000);
       this.newRow = {};
+      if(this.newMathInput?.nativeElement?.value){
+        this.newMathInput.nativeElement.value = '';
+      }
     } else {
       this.flashcardsSet.unshift(this.newRow);
       this.errorMessage = '';
       this.newRow = {};
+      if(this.newMathInput?.nativeElement?.value){
+        this.newMathInput.nativeElement.value = '';
+      }
     }
   }
 
@@ -199,5 +208,18 @@ export class CreateSetComponent implements OnInit, OnDestroy {
 
   public canAddSet() {
     return this.flashcardsSet?.length >= 4 ? null : true;
+  }
+
+  public enableMathMode(){
+    this.mathMode = !this.mathMode;
+    localStorage?.setItem('math-mode-super-study', `${this.mathMode}`);
+  }
+
+  public changeNewMathInputValue(e: any){
+    this.newRow.left = e.target.value;
+  }
+
+  public changeEditMathInputValue(e: any, i: number){
+    this.flashcardsSet[i].left = e.target.value;
   }
 }

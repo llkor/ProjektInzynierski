@@ -30,6 +30,7 @@
         </div>
 
     </div>
+    <div class="math-container"><button class="btn btn-primary" (click)="enableMathMode()">Włącz/Wyłacz Formuły matymatyczne</button></div>
     <br />
     <form *ngIf="enableCSV">
         <div class="form-group">
@@ -96,9 +97,14 @@
         action="/" method="post" class="flashcard-row">
         <div class="flashcard-wrapper">
             <div class="first-side">
-                <input *ngIf="flashcard?.editMode" type="text" name="first_side" class="set-title"
+                <input *ngIf="flashcard?.editMode && !mathMode" type="text" name="first_side" class="set-title"
                     [(ngModel)]="flashcard.first_side" required />
-                <span *ngIf="!flashcard?.editMode">{{flashcard.first_side}}</span>
+                <math-field class="set-title" *ngIf="flashcard?.editMode && mathMode" (change)="changeNewMathInputValue($event,i)">
+                        {{flashcard.first_side}}
+                </math-field>
+                <span *ngIf="!flashcard?.editMode && !mathMode">{{flashcard.first_side}}</span>
+                <math-field class="set-title no-events" *ngIf="!flashcard?.editMode && mathMode" [innerHTML]="flashcard.first_side">
+                </math-field>
             </div>
             <div class="select-file">
                 <div *ngIf="flashcard?.editMode">

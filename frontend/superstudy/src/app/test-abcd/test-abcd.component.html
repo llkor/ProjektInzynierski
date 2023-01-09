@@ -4,13 +4,17 @@
 </div>
 <div class="container-fluid">
   <div class="title">Test ABCD</div>
+  <div class="math-container"><button class="btn btn-primary" (click)="enableMathMode()">Włącz/Wyłacz Formuły matymatyczne</button></div>
   <div class="switch">
     <button class="btn btn-primary" (click)="changeLanguage()">
       Zmień język
     </button>
   </div>
   <div *ngFor="let item of test; let i = index" class="single-question">
-    <div class="text" *ngIf="!this.switch">{{ item.first_side }}</div>
+    <div class="text" *ngIf="!this.switch && !mathMode">{{ item.first_side }}</div>
+    <div class="text" *ngIf="!this.switch && mathMode">
+      <math-field [innerHTML]="item.first_side"></math-field>
+    </div>
     <div class="text" *ngIf="this.switch">{{ item.second_side }}</div>
     <hr class="line" />
     <div class="buttons" *ngIf="!this.switch">
@@ -25,15 +29,18 @@
       </button>
     </div>
     <div class="buttons" *ngIf="this.switch">
-      <button
-        *ngFor="let answer of item.answers2; let ianswer = index"
+      <ng-container *ngFor="let answer of item.answers2; let ianswer = index">
+        <button
         class="abcd-button"
         (click)="isCorrect(i, answer)"
         [style.background]="changeColor(i, answer)"
         [style.pointerEvents]="item.checked ? 'none' : ''"
       >
-        {{ answer }}
+        <span *ngIf="!(this.switch && mathMode)">{{ answer }}</span>
+        <math-field *ngIf="this.switch && mathMode" [innerHTML]="answer">
+        </math-field>
       </button>
+      </ng-container>
     </div>
   </div>
 </div>

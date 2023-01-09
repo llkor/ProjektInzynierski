@@ -1,4 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@300;400&display=swap');
+@import 'mathlive/dist/mathlive-static.css';
+
+math-field{
+    background-color: #BDDCFF;
+    min-height: 100px;
+    min-width: 100px;
+    padding: 5px;
+}
+.math-container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
 .wrapper {
     font-family: 'Poppins', sans-serif;
     width: 100%;

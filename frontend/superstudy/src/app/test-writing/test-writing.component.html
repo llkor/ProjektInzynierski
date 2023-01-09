@@ -4,13 +4,18 @@
 </div>
 <div class="wrapper">
   <div class="title">Pisanie</div>
+  <div class="math-container"><button class="btn btn-primary" (click)="enableMathMode()">Włącz/Wyłacz Formuły matymatyczne</button></div>
   <div class="switch">
     <button class="btn btn-primary" (click)="changeLanguage()">
       Zmień język
     </button>
   </div>
   <div *ngFor="let item of test; let i = index" class="example">
-    <div class="question" [title]="item.first_side" *ngIf="!this.switch">{{ item.first_side }}</div>
+    <div class="question" [title]="item.first_side" *ngIf="!this.switch && !mathMode">{{ item.first_side }}</div>
+    <div class="question" *ngIf="!this.switch && mathMode">
+      <math-field class="no-events"  [innerHTML]="item.first_side">
+      </math-field>
+    </div>
     <div class="question" [title]="item.second_side" *ngIf="this.switch">{{item.second_side}}</div>
     <div class="answer" [style.pointer-events]="item?.checked ? 'none' : ''" *ngIf="!this.switch">
       <input
@@ -33,6 +38,7 @@
     </div>
     <div class="answer" [style.pointer-events]="item?.checked ? 'none' : ''" *ngIf="this.switch">
       <input
+        *ngIf="!mathMode"
         class="text-input"
         type="text"
         [style.background-color]="changeColor(i)"
@@ -41,6 +47,12 @@
         [readonly]="item.checked"
         (keyup.enter)="isCorrect(i)"
       />
+      <div *ngIf="mathMode" class="text-input">
+        <math-field (change)="changeNewMathInputValue($event,i)"
+        [style.background-color]="changeColor(i)">
+          {{item.answer}}
+        </math-field>
+      </div>
       <button
         class="btn btn-primary"
         (click)="isCorrect(i)"

@@ -30,6 +30,7 @@
     "angular-material-badge": "^1.2.91",
     "bootstrap": "^4.6.1",
     "font-awesome": "^4.7.0",
+    "mathlive": "^0.86.0",
     "ngx-pagination": "^5.1.1",
     "ngx-show-hide-password": "~2.1.0",
     "rxjs": "~6.6.0",
@@ -68,5 +69,5 @@
         "stringifyContentPathRegex": "\\.html$"
       }
     }
-}
+  }
 }

@@ -1,3 +1,22 @@
+@import 'mathlive/dist/mathlive-static.css';
+
+math-field{
+    background-color: #BDDCFF;
+    min-height: 100px;
+    min-width: 100px;
+    padding: 5px;
+}
+math-field.no-events{
+  pointer-events: none;
+}
+.math-container{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
 .example {
   font-size: 35px;
   display: flex;

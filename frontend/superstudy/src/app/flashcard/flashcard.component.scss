@@ -1,3 +1,21 @@
+@import 'mathlive/dist/mathlive-static.css';
+
+math-field{
+    background-color: #aed2fc;
+    min-height: 100px;
+    min-width: 100px;
+    padding: 5px;
+    margin-left: 35px;
+}
+.math-container{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+math-field.no-events{
+    pointer-events: none;
+}
 .flashcards-container {
     display: flex;
     max-width: 100%;

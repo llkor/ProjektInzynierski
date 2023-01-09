@@ -4,6 +4,8 @@ import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Sides } from '../_helpers/enums';
 import { FlashcardsService } from '../_services/flashcards.service';
+// @ts-ignore
+import 'mathlive';
 import {
   trigger,
   state,
@@ -42,6 +44,7 @@ export class SetPreviewComponent implements OnInit, OnDestroy {
   public set = [];
   public visibleItemId = 0;
   public visibleItemSide = Sides.firstSide;
+  public mathMode = (localStorage?.getItem('math-mode-super-study') === 'true');
 
   constructor(
     private flashcardsService: FlashcardsService,
@@ -83,5 +86,10 @@ export class SetPreviewComponent implements OnInit, OnDestroy {
   public previous(): void {
     let id = this.visibleItemId - 1;
     this.visibleItemId = id < 0 ? this.set.length - 1 : id;
+  }
+
+  public enableMathMode(){
+    this.mathMode = !this.mathMode;
+    localStorage?.setItem('math-mode-super-study', `${this.mathMode}`);
   }
 }
