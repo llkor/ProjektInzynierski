@@ -33,12 +33,14 @@ Wywołaj poniższą komendę
 ```
 Teraz frontend jest dostępny pod adresem http://localhost:8081/
 
+
 ## Backend 
 
 Wymagania do uruchomienia:
 * node.js
 
 #### Aby uruchomić Backend należy wykonać następujące kroki:
+
 
 Przejdź do odpowiedniego folderu:
 
